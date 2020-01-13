@@ -24,6 +24,10 @@ class LearnList(object):
         except Exception as e:
             print('%s' % e)
 
+    def append_value(self, value):
+        self.input_list.append(value)
+        return self.input_list
+
     def pop_element(self, index: int):
         return self.input_list.pop(index)
 
@@ -34,6 +38,12 @@ class LearnList(object):
     def remove_value(self, value):
         return self.input_list.remove(value)
 
+    def get_min(self):
+        return min(self.input_list)
+
+    def get_max(self):
+        return max(self.input_list)
+
 
 if __name__ == '__main__':
     list1 = [2, 1, 3, 5, 8, 1, 2]
@@ -42,3 +52,7 @@ if __name__ == '__main__':
     print(test.sort_list())
     print(test.get_length())
     print(test.get_index(2))
+    print(test.get_min())
+    print(test.get_max())
+    print(test.append_value(10))
+    print(test.get_max())
