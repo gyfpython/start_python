@@ -47,5 +47,3 @@ def re_clac_rainy_snow_records(ip: str, port: str, env: str, airflow_ip: str, ai
         record_list.append(obj['_id'])
     return record_list
 
-
-# print(re_clac_rainy_snow_records('10.69.130.183', '9200', 'int', '10.69.144.145', '8080', 'int'))
