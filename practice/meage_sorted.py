@@ -1,3 +1,8 @@
+'''
+meage two list and sorted
+'''
+
+
 def test(list1: list, list2: list):
     for ele in list2:
         list1.append(ele)
