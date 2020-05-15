@@ -1,3 +1,4 @@
+# get min/max price
 if __name__ == "__main__":
     while True:
         line = list(map(int, input().split()))
