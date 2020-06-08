@@ -1,6 +1,6 @@
-'''
+"""
 meage two list and sorted
-'''
+"""
 
 
 def test(list1: list, list2: list):

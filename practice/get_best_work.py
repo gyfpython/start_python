@@ -1,6 +1,6 @@
-'''
+"""
 get best work
-'''
+"""
 
 
 def best_worker(numbers: list):

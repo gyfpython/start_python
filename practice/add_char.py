@@ -1,10 +1,10 @@
-'''
+"""
 if string length < 8
 add 0 to length 8
 if string length >= 8
 split 8 to all
 string.ljust(num, char): add char until length of string is num
-'''
+"""
 
 
 def split_eight(string: str):

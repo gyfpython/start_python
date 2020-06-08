@@ -1,6 +1,6 @@
-'''
+"""
 sorted and remove duplicate str in string
-'''
+"""
 
 
 def string_rm_duplicate(str1: str):

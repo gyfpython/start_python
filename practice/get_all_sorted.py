@@ -1,6 +1,6 @@
-'''
+"""
 get all sorted of a string
-'''
+"""
 
 
 def all_str_sort(string: str):

@@ -1,6 +1,6 @@
-'''
+"""
 get count of character in a string
-'''
+"""
 
 
 def count_char(string: str, char: str):

@@ -1,6 +1,6 @@
-'''
+"""
 input a string, return length of last word
-'''
+"""
 
 
 def get_length(string: str):

@@ -1,6 +1,6 @@
-'''
+"""
 n phone numbers,m string, return every string's count in those p_ns
-'''
+"""
 
 
 def search_count(phone_number: list, strings: list):
