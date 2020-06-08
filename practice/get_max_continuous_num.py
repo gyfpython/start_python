@@ -25,4 +25,8 @@ def max_continuous_num(input_list: list):
 
 
 test_list = [2, 3, 9, 6, 7, 1, 8, 0, 4, 11, 12, 13, 14, 15, 16]
+test_list1 = []
+test_list2 = [1]
 print(max_continuous_num(test_list))
+print(max_continuous_num(test_list1))
+print(max_continuous_num(test_list2))
