@@ -119,6 +119,8 @@ class WebSpider(object):
                     tem_map['request_url'] = base_current_url + base_tem
             if 'javascript' in tem_map['request_url'] or 'data:image' in tem_map['request_url']:
                 tem_map['request_url'] = base_current_url
+            if tem_map['request_url'].endswith('//'):
+                tem_map['request_url'] = tem_map['request_url'][:-1]
             result_url.append(tem_map)
         return result_url
 
