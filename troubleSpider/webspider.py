@@ -40,6 +40,7 @@ class WebSpider(object):
             'sec-fetch-site': 'cross-site',
             'upgrade-insecure-requests': '1'
         }
+        get_success =  False
         for i in range(5):
             try:
                 response = requests.get(url=url, headers=headers, timeout=20)
@@ -50,19 +51,25 @@ class WebSpider(object):
                     with open(file_name, 'wb') as f:
                         f.write(response.content)
                     print('end spider {}'.format(url))
+                    get_success = True
                     break
                 if url.endswith('.js') or url.endswith('.css'):
                     self.save_to_html([], url, response.text)
+                    get_success = True
+                    break
                 changed_url = self.fetch_url(response.text, url)
                 self.save_to_html(changed_url, url, response.text)
                 print('end spider {}'.format(url))
                 for url_tem in changed_url:
                     self.get_page(url_tem['request_url'])
+                get_success = True
                 break
             except Exception as e:
                 logging.exception(e)
                 print(e)
                 pass
+        if not get_success:
+            all_url.remove(url)
         return False
 
     def fetch_url(self, content: str, current_url: str):
@@ -110,8 +117,8 @@ class WebSpider(object):
                     tem_map['request_url'] = self.base_url + base_tem
                 else:
                     tem_map['request_url'] = base_current_url + base_tem
-            if 'javascript' in tem_map['request_url']:
-                continue
+            if 'javascript' in tem_map['request_url'] or 'data:image' in tem_map['request_url']:
+                tem_map['request_url'] = base_current_url
             result_url.append(tem_map)
         return result_url
 
@@ -142,10 +149,6 @@ class WebSpider(object):
 
 if __name__ == '__main__':
     start_spider = WebSpider('www.troublecodes.net')
-    # conten = 'src=\'https://gmpg.org/xfn/11/\''
-    # print(start_spider.fetch_url(' https://www.troublecodes.net/obd/Lincoln', conten))
-    # start_spider.get_page('https://www.troublecodes.net/pcodes/hondacodes/')
-    # start_spider.get_page('https://www.troublecodes.net/pcodes/')
     for net in ['https://www.troublecodes.net/pcodes/', 'https://www.troublecodes.net/bcodes/',
                 'https://www.troublecodes.net/ccodes/', 'https://www.troublecodes.net/ucodes/']:
         Thread(target=start_spider.get_page, args=(net, )).start()
