@@ -90,6 +90,8 @@ class WebSpider(object):
                 continue
             if (base_tem.startswith('https://') or base_tem.startswith('//') or base_tem.startswith('http://')) and \
                     self.host not in base_tem:
+                tem_map['request_url'] = self.base_url + '/'
+                result_url.append(tem_map)
                 continue
             if base_tem.startswith("http://"):
                 base_tem = base_tem.replace("http:", "https")
@@ -98,6 +100,9 @@ class WebSpider(object):
             if not base_tem.endswith('/') and '.' not in os.path.basename(base_tem):
                 base_tem = base_tem + '/'
             if base_tem.startswith('https://' + self.host):
+                remove_fix_positions = re.findall(r"(#.*?/)", base_tem)
+                for remove_fix_position in remove_fix_positions:
+                    base_tem = base_tem.replace(remove_fix_position, '')
                 tem_map['request_url'] = base_tem
             else:
                 if base_tem in base_current_url:
