@@ -44,7 +44,7 @@ class WebSpider(object):
         for i in range(5):
             try:
                 response = requests.get(url=url, headers=headers, timeout=20)
-                if url.endswith('.gif') or url.endswith('.png') or url.endswith('.jpg'):
+                if url.endswith('.gif') or url.endswith('.png') or url.endswith('.jpg') or url.endswith('.jpeg'):
                     file_name = self.transform_url_to_path(url)
                     if not os.path.isdir(os.path.dirname(file_name)):
                         os.makedirs(os.path.dirname(file_name))
