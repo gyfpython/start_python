@@ -1,6 +1,8 @@
+import datetime
 import logging
 import os
 import re
+import time
 
 import requests
 from threading import Thread
@@ -156,6 +158,11 @@ class WebSpider(object):
 
 if __name__ == '__main__':
     start_spider = WebSpider('www.troublecodes.net')
+    start_time = time.time()
+    print('开始时间：{}'.format(datetime.datetime.now()))
     for net in ['https://www.troublecodes.net/pcodes/', 'https://www.troublecodes.net/bcodes/',
                 'https://www.troublecodes.net/ccodes/', 'https://www.troublecodes.net/ucodes/']:
         Thread(target=start_spider.get_page, args=(net, )).start()
+    end_time = time.time()
+    print('结束时间：{}'.format(datetime.datetime.now()))
+    print('总耗时：{}'.format(end_time - start_time))
