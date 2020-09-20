@@ -11,6 +11,7 @@ class GenerateVWCases(object):
                        "离线编码": [False, False], "引导功能": [False, False],
                        "在线安装列表": [False, False], "在线安全登录": [False, False]}
 
+    # 根据输入不同切换不同方法，替代复杂的if/elif/else语法
     def switch_function(self, selection: str):
         function_map = {"读汽车电脑信息": self.info, "故障码": self.trouble_code, "读数据流": self.data_stream,
                         "高级ID": self.advanced_id, "动作测试": self.action_test, "匹配": self.adapter,
