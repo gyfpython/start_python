@@ -1,4 +1,5 @@
 import os
+import re
 
 import scrapy
 from urllib import parse
@@ -32,7 +33,17 @@ class WebSpider(scrapy.Spider):
                 f.write(response.body)
         self.log('Save file {}'.format(file_name))
         for href in response.xpath('//a/@href').getall():
-            if '#' in href:
-                self.log('原始url：{}'.format(href))
-                self.log('urljoin1之后：{}'.format(response.urljoin(href)))
+            self.log('原始url：{}'.format(href))
+            page_fixs = re.findall(r"(#.*?)/", href)
+            for page_fix in page_fixs:
+                href = href.replace(page_fix, '')
+            page_fixs = re.findall(r"(#.*)", href)
+            for page_fix in page_fixs:
+                href = href.replace(page_fix, '')
+            self.log('urljoin1之后：{}'.format(response.urljoin(href)))
             # yield scrapy.Request(response.urljoin(href), self.parse)
+
+
+if __name__ == '__main__':
+    test1 = '#100'
+    print(re.findall(r"(#.*)", test1))
