@@ -51,7 +51,8 @@ def connect_mqtt() -> mqtt_client:
             print("Connected to MQTT Broker!")
         else:
             print("Failed to connect, return code %d\n", rc)
-
+    client_id = "test"
+    keepalive = 60
     client = mqtt_client.Client(client_id)
     client.on_connect = on_connect
     client.connect(broker, port, keepalive)
@@ -59,6 +60,9 @@ def connect_mqtt() -> mqtt_client:
 
 
 def subscribe(client: mqtt_client):
+    topic = "/python/mqtt1"
+    reply_topic = "/python/mqtt1"
+
     def on_message(client, userdata, msg):
         print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         param = "I received the message"
